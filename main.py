@@ -53,7 +53,7 @@ db.init_app(app)
 
 # CONFIGURE TABLES
 class BlogPost(db.Model):
-    __table_name__ = "blog_posts"
+    __tablename__ = "blog_posts"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     # Create Foreign Key, "users.id" the users refers to the table_name of User.
     author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
@@ -70,7 +70,7 @@ class BlogPost(db.Model):
 
 # Create a User table for all your registered users
 class User(UserMixin, db.Model):
-    __table_name__ = "users"
+    __tablename__ = "users"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String(100), unique=True)
     password: Mapped[str] = mapped_column(String(100))
@@ -84,7 +84,7 @@ class User(UserMixin, db.Model):
 
 # Create a table for the comments on the blog posts
 class Comment(db.Model):
-    __table_name__ = "comments"
+    __tablename__ = "comments"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     text: Mapped[str] = mapped_column(Text, nullable=False)
     # Child relationship:"users.id" The users refers to the table_name of the User class.
